@@ -2,31 +2,40 @@ import React, { Component } from 'react'
 import { requestChords } from '../actions/chord'
 import { connect } from 'react-redux';
 import Navigation from './Navigation'
-import { Card, Button, CardImg, CardTitle, CardText, CardDeck,
- CardSubtitle, CardBody } from 'reactstrap';
+import TextInput from './TextInput';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
 
 export class Generator extends Component {
-  state = {
-    name: '',
-    related_chord: ''
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false
+    };
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
   }
 
   render() {
+    const errors = this.props.errors || {}
     return (
-      <div className='chord-boi'>
-        <Navigation />
-         <span className='chordName'>
+      <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle caret>
+          CHORD
+        </DropdownToggle>
+        <DropdownMenu>
           {this.props.chord.map(chords =>
-            <Card key={chords.id}>
-              <CardBody>
-                <CardTitle>{chords.name}:
-                  <CardText>[{chords.related_chord + ""}]</CardText>
-                </CardTitle>
-              </CardBody>
-            </Card>
+            <DropdownItem key={chords.id} header>{chords.name}</DropdownItem>
           )}
-         </span>
-      </div>
+        </DropdownMenu>
+      </Dropdown>
+
     )
   }
 }
