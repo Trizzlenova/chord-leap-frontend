@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import auth, * as fromAuth from './auth.js';
+import chordReducer from './chord.js'
 
 export default combineReducers ({
   auth: auth,
-  router: routerReducer
+  router: routerReducer,
+  chord: chordReducer
 })
 
 export const isAuthenticated = state => fromAuth.isAuthenticated(state.auth)

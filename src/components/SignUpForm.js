@@ -1,23 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Alert, Button, Jumbotron, Form } from 'reactstrap';
 
-import TextInput from './TextInput';
+const user = User.objects.all()
 
-export default class LoginForm extends Component {
-  state = {
-    username: '',
-    password: ''
+export const SignUpForm extends Component {
+  constructor(props) {
+    super(props);
   }
 
-  handleInputChange = (event) => {
-    const target = event.target,
-          value = target.type ===
-            'checkbox' ? target.checked : target.value,
-          name = target.name
+  state = {
+    username: '',
+    password: '',
+  }
 
-    this.setState({
-      [name]: value
-    })
+  this.onChange = this.onChange.bind(this)
+
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value})
   }
 
   onSubmit = (event) => {
@@ -25,12 +24,18 @@ export default class LoginForm extends Component {
     this.props.onSubmit(this.state.username, this.state.password)
   }
 
+  handleInputChange() {
+    const target = event.target,
+          value  = target.type,
+  }
+
+
   render() {
     const errors = this.props.errors || {}
     return (
       <Jumbotron className = 'container'>
         <Form onSubmit = {this.onSubmit}>
-          <h1>Authentication</h1>
+          <h1>Sign Up</h1>
           {
             errors.non_field_errors ?
               <Alert color = 'danger'>
@@ -43,9 +48,7 @@ export default class LoginForm extends Component {
           <TextInput name = 'password' label = 'Password'
                      error = {errors.password} type = 'password'
                      onChange = {this.handleInputChange} />
-          <Button type = 'submit' color = 'primary' size='lg'>
-            Log In
-          </Button>
+          <Button type = 'submit' color = 'primary' size='lg'></Button>
         </Form>
       </Jumbotron>
     )

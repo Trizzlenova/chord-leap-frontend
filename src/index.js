@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import {Route, Switch} from 'react-router';
 import Login from './containers/Login';
 import PrivateRoute from './containers/PrivateRoute';
+import Chord from './components/Chord'
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -21,6 +22,7 @@ ReactDOM.render((
     <ConnectedRouter history={history}>
       <Switch>
         <Route exact path = '/login' component = {Login} />
+        <Route path = '/chords' component = {Chord} />
         <PrivateRoute path = '/' component = {App} />
       </Switch>
     </ConnectedRouter>
