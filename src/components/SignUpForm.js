@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Alert, Button, Jumbotron, Form } from 'reactstrap';
+import TextInput from './TextInput';
 
-const user = User.objects.all()
+// const user = User.objects.all()
 
-export const SignUpForm extends Component {
+export default class SignUpForm extends Component {
   constructor(props) {
     super(props);
   }
@@ -12,8 +13,6 @@ export const SignUpForm extends Component {
     username: '',
     password: '',
   }
-
-  this.onChange = this.onChange.bind(this)
 
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value})
@@ -25,8 +24,8 @@ export const SignUpForm extends Component {
   }
 
   handleInputChange() {
-    const target = event.target,
-          value  = target.type,
+    // const target = event.target,
+          // value  = target.type
   }
 
 
@@ -48,7 +47,7 @@ export const SignUpForm extends Component {
           <TextInput name = 'password' label = 'Password'
                      error = {errors.password} type = 'password'
                      onChange = {this.handleInputChange} />
-          <Button type = 'submit' color = 'primary' size='lg'></Button>
+          <Button type = 'submit' color = 'primary' size='lg'>Submit</Button>
         </Form>
       </Jumbotron>
     )

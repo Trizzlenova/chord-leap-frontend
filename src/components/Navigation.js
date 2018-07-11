@@ -7,10 +7,13 @@ export default class Navigation extends Component {
       <div>
         <Nav>
           <NavItem>
-            <NavLink href='#'>Get Started!</NavLink>
+            <NavLink href='/generator'>Get Started!</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href='/chords'>Chords</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href='/signup'>Sign Up</NavLink>
           </NavItem>
         </Nav>
       </div>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Alert, Button, Jumbotron, Form } from 'reactstrap';
-
 import TextInput from './TextInput';
 
 export default class LoginForm extends Component {

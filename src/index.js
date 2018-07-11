@@ -8,6 +8,8 @@ import {Route, Switch} from 'react-router';
 import Login from './containers/Login';
 import PrivateRoute from './containers/PrivateRoute';
 import Chord from './components/Chord'
+import Generator from './components/Generator'
+import SignUpForm from './components/SignUpForm'
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -22,7 +24,9 @@ ReactDOM.render((
     <ConnectedRouter history={history}>
       <Switch>
         <Route exact path = '/login' component = {Login} />
+        <Route path = '/signup' component = {SignUpForm} />
         <Route path = '/chords' component = {Chord} />
+        <Route path = '/generator' component = {Generator} />
         <PrivateRoute path = '/' component = {App} />
       </Switch>
     </ConnectedRouter>
