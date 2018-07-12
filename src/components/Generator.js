@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { requestChords } from '../actions/chord'
+import { getChords } from '../actions/chord'
 import { connect } from 'react-redux';
 import Navigation from './Navigation'
 import TextInput from './TextInput';
@@ -19,6 +19,10 @@ export class Generator extends Component {
     };
   }
 
+  componentWillMount() {
+    getChords()
+  }
+
   toggle(event) {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen,
@@ -30,15 +34,17 @@ export class Generator extends Component {
   display(event) {
     let chord = this.props.chord
     let target = event.target.id
-    let relatedChords = chord[target].related_chord
+    let relatedChords = chord[target]
     let min = 0;
+    console.log(relatedChords)
     let max = relatedChords.length
     let randomIndex = Math.floor(Math.random() * (max-min)) + min
     console.log(relatedChords[randomIndex])
-    }
+  }
 
 
   render() {
+    // console.log(this.props)
     const errors = this.props.errors || {}
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -68,4 +74,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(Generator)
+export default connect(mapStateToProps, getChords)(Generator)

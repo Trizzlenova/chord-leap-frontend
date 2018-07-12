@@ -6,6 +6,7 @@ import { routerMiddleware } from 'react-router-redux';
 import rootReducer from './reducers'
 import apiMiddleware from './middleware';
 
+
 export default (history) => {
   const persistedFilter = createFilter (
     'auth', ['access', 'refresh']
