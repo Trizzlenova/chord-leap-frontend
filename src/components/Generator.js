@@ -11,27 +11,48 @@ export class Generator extends Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.display = this.display.bind(this);
+
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      chords: []
     };
   }
 
-  toggle() {
+  toggle(event) {
     this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
+      dropdownOpen: !prevState.dropdownOpen,
     }));
   }
+
+
+
+  display(event) {
+    let chord = this.props.chord
+    let target = event.target.id
+    let relatedChords = chord[target].related_chord
+    let min = 0;
+    let max = relatedChords.length
+    let randomIndex = Math.floor(Math.random() * (max-min)) + min
+    console.log(relatedChords[randomIndex])
+    }
+
 
   render() {
     const errors = this.props.errors || {}
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>
-          CHORD
+        CHORDS
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu onClick={this.display}>
           {this.props.chord.map(chords =>
-            <DropdownItem key={chords.id} header>{chords.name}</DropdownItem>
+            <DropdownItem
+              id={chords.id}
+              name={chords.name}
+              header>{chords.name}
+
+            </DropdownItem>
           )}
         </DropdownMenu>
       </Dropdown>

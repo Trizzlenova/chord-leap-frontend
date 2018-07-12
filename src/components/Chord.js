@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { requestChords } from '../actions/chord'
+import { getChords, requestChords } from '../actions/chord'
 import { connect } from 'react-redux';
 import Navigation from './Navigation'
 import { Card, Button, CardImg, CardTitle, CardText, CardDeck,
@@ -7,9 +7,11 @@ import { Card, Button, CardImg, CardTitle, CardText, CardDeck,
 
 export class Chord extends Component {
   state = {
+    id: '',
     name: '',
-    related_chord: ''
+    related_chord: '',
   }
+
 
   render() {
     return (
@@ -20,7 +22,7 @@ export class Chord extends Component {
             <Card key={chords.id}>
               <CardBody>
                 <CardTitle>{chords.name}:
-                  <CardText>[{chords.related_chord + ""}]</CardText>
+                  <CardText>[{chords.related_chord}]</CardText>
                 </CardTitle>
               </CardBody>
             </Card>
