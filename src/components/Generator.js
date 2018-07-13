@@ -33,30 +33,35 @@ export class Generator extends Component {
 
   display(event) {
     let chord = this.props.chord
-    let target = event.target.id
-    let relatedChords = chord[target]
-    let min = 0;
+    let target = event.target.getAttribute('name');
+    let relatedChords = chord[target].related_chords
+    console.log("======== TARGET'S RELATED CHORDS ==========")
     console.log(relatedChords)
+    console.log('==================')
+    let min = 0;
     let max = relatedChords.length
     let randomIndex = Math.floor(Math.random() * (max-min)) + min
-    console.log(relatedChords[randomIndex])
+    let randomChord = relatedChords[randomIndex]
+    console.log("======== RANDOM CHORD ==========")
+    console.log(randomChord)
+    console.log('==================')
   }
 
 
   render() {
-    // console.log(this.props)
     const errors = this.props.errors || {}
+    const chords = this.props.chord;
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>
         CHORDS
         </DropdownToggle>
         <DropdownMenu onClick={this.display}>
-          {this.props.chord.map(chords =>
+          {Object.keys(chords).map(chord =>
             <DropdownItem
-              id={chords.id}
-              name={chords.name}
-              header>{chords.name}
+              id={chords[chord].id}
+              name={chords[chord].name}
+              header>{chords[chord].name}
 
             </DropdownItem>
           )}

@@ -4,18 +4,18 @@ import * as chord from '../actions/chord'
 const initialState = [
   {
     id: 0,
-    name: 'B min7',
-    related_chords: ['A maj', 'E min', 'B# maj'] ['F maj', 'A min', 'D# maj']
+    name: 'B min',
+    related_chords: ['A min', 'E min', 'B# maj']
   },
   {
     id: 1,
-    name: 'E min5',
-    related_chords: ['Ab maj', 'G# min', 'F maj']
+    name: 'E min',
+    related_chords: ['A min', 'B min', 'G maj']
   },
   {
     id: 2,
-    name: 'B min7',
-    related_chords: ['A maj', 'E min', 'B# maj']
+    name: 'A min',
+    related_chords: ['B min', 'E min', 'G maj']
   },
 ]
 
