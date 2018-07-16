@@ -17,7 +17,8 @@ export class Chord extends Component {
   }
 
   render() {
-    const chords = this.props.chord;
+    let chords = this.props.chord;
+
     return (
       <div className='chord-boi'>
         <Navigation />
@@ -26,7 +27,9 @@ export class Chord extends Component {
             <Card key={chords[chord].id}>
               <CardBody>
                 <CardTitle>{chords[chord].name}:
-                  <CardText>[{chords[chord].related_chords}]</CardText>
+                  <div class='spaceboi'>
+                  <CardText>[{chords[chord].related_chords + " "}]</CardText>
+                  </div>
                 </CardTitle>
               </CardBody>
             </Card>

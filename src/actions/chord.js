@@ -16,7 +16,7 @@ export function getChords(id) {
       const data = {};
       response.data.forEach((item) => {
         data[item.name] = item;
-        // Turning a stringified array into an actual array
+        // Uh oh...have to convert the stringified array into an actual array.
         data[item.name]["related_chords"] = JSON.parse(item.related_chords.replace(/\'/g, '"'))
       })
       dispatch({type:CHORDS_REQUEST, headers:{'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}, payload: data})
