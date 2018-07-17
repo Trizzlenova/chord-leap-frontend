@@ -3,19 +3,12 @@ import { getChords } from '../actions/chord'
 import { connect } from 'react-redux';
 import Navigation from './Navigation'
 import TextInput from './TextInput';
-import { Button, Carousel, CarouselItem, CarouselControl, CarouselIndicators,
-  CarouselCaption, Col, Form, Input, Dropdown,
+import { Button, Col, Form, Input, Dropdown,
   DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 export class Generator extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeIndex: 0 };
-    this.next = this.next.bind(this);
-    this.previous = this.previous.bind(this);
-    this.goToIndex = this.goToIndex.bind(this);
-    this.onExiting = this.onExiting.bind(this);
-    this.onExited = this.onExited.bind(this);
     this.toggle = this.toggle.bind(this);
     this.display = this.display.bind(this);
 
@@ -24,19 +17,6 @@ export class Generator extends Component {
       chords: [],
       randyChord: []
     };
-  }
-
-  onExiting() {
-    this.animating = true;
-  }
-
-  onExited() {
-    this.animating = false;
-  }
-
-  goToIndex(newIndex) {
-    if (this.animating) return;
-    this.setState({ activeIndex: newIndex });
   }
 
   componentWillMount() {
@@ -58,25 +38,18 @@ export class Generator extends Component {
     let max = relatedChords.length
     let randomIndex = Math.floor(Math.random() * (max-min)) + min
     let randomChord = relatedChords[randomIndex]
+    let chordPlacer = document.getElementById('dropChordHere')
+    let node = document.createElement("h3");
+    let textnode = document.createTextNode(randomChord)
+    node.appendChild(textnode);
+    chordPlacer.appendChild(node);
     this.state.randyChord.push(randomChord)
+    alert(randomChord)
   }
 
   renderState() {
     return this.state.randyChord
   }
-
-  next() {
-    if (this.animating) return;
-    const nextIndex = this.state.activeIndex === this.state.randyChord.length - 1 ? 0 : this.state.activeIndex + 1;
-    this.setState({ activeIndex: nextIndex });
-  }
-
-  previous() {
-    if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? this.state.randyChord.length - 1 : this.state.activeIndex - 1;
-    this.setState({ activeIndex: nextIndex });
-  }
-
 
   render() {
     const { activeIndex } = this.state;
@@ -94,21 +67,9 @@ export class Generator extends Component {
                 header>{chords[chord].name}
           </Button>
         )}
-        <div className='chordPop'>
-        {for(let i = 0; i < this.state.randyChord.length; i++) {
-          <CarouselItem
-              onExiting={this.onExiting}
-              onExited={this.onExited}
-              key={this.state.randyChord[i].id}
-            >
-            <CarouselCaption captionText={this.state.randyChord[i].related_chords} />
-          </CarouselItem>
-          }}
-        }
-
-        </div>
         <Form>
           <Col sm={10}>
+          <div id='dropChordHere'></div>
           </Col>
         </Form>
         <Button>Save</Button>
